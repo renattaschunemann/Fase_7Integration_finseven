@@ -1,0 +1,851 @@
+type: collection.insomnia.rest/5.0
+schema_version: "5.1"
+name: Testes API Integração Finvesen
+meta:
+  id: wrk_739fe0efa6d746cda6028677a890790a
+  created: 1779283985975
+  modified: 1779284014489
+  description: ""
+collection:
+  - url: http://localhost:8080/api/usuarios
+    name: Cadastro Login-Usuario
+    meta:
+      id: req_f40978ce7dc64ed7825f1884b589498f
+      created: 1779283986064
+      modified: 1779288740242
+      isPrivate: false
+      description: ""
+      sortKey: -1779283986064
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "senha": "senhaSegura123",
+          "tentativasLogin": 0,
+          "contaBloqueada": false,
+          "usuario": {
+            "nome": "Daniel Silva",
+            "cpf": 12345678900,
+            "email": "daniel@finseven.com"
+          }
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/12.5.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/api/categorias
+    name: Cadastro Categoria Despesa
+    meta:
+      id: req_a4844c130ba24b31a0f592c7d2cd13fb
+      created: 1779285555506
+      modified: 1779309552742
+      isPrivate: false
+      description: ""
+      sortKey: -1779285555506
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "descricao": "Despesas Variáveis",
+          "tiposTransacao": "DESPESA"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/12.5.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/api/categorias
+    name: Cadastro Categoria Receita
+    meta:
+      id: req_92fe9f39642c4315ad983ffd08bc583c
+      created: 1779285587715
+      modified: 1779312046635
+      isPrivate: false
+      description: ""
+      sortKey: -1779285587715
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "descricao": "Retorno Investimento",
+          "tiposTransacao": "RECEITA"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/12.5.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/api/bancos
+    name: Cadastro Banco
+    meta:
+      id: req_86f6285bca4349849b353281743e191c
+      created: 1779286229253
+      modified: 1779309655548
+      isPrivate: false
+      description: ""
+      sortKey: -1779286229253
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "nome": "Banco Inter",
+          "agencia": "1818",
+          "conta": "74585-0",
+          "tipo": "Corrente",
+          "saldo": 1700.0
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/12.5.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/api/suporte
+    name: Cadastro Suporte
+    meta:
+      id: req_2d26f64103e641feac1ace91c45f047a
+      created: 1779286404207
+      modified: 1779309694774
+      isPrivate: false
+      description: ""
+      sortKey: -1779286404207
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "assunto": "Dúvida sobre Categorias",
+          "mensagem": "Preciso adicionar uma nova categoria, como funciona?",
+          "usuario": {
+            "id": 1 
+          }
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/12.5.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/api/transacoes/despesas
+    name: Lançamento Despesa
+    meta:
+      id: req_cd8978e4190e49a292ad6dece4b2d971
+      created: 1779286458343
+      modified: 1779309763029
+      isPrivate: false
+      description: ""
+      sortKey: -1779286458343
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "idBanco": 1,
+          "idCategoria": 5,
+          "valor": 158.90,
+          "data": "2026-05-05",
+          "descricao": "Internet",
+          "formaPagamento": "PIX"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/12.5.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/api/transacoes/receitas
+    name: Lançamento Receita
+    meta:
+      id: req_d0c9fcc80609405a80597858bdb8c888
+      created: 1779286559866
+      modified: 1779309841246
+      isPrivate: false
+      description: ""
+      sortKey: -1779286559866
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "idBanco": 2,
+          "idCategoria": 7,
+          "valor": 1500,
+          "data": "2026-05-01",
+          "descricao": "Retorno CDB",
+          "origem": "CDB Banco Inter"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/12.5.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/api/transacoes
+    name: Listagem Transações
+    meta:
+      id: req_3762285abc8d4e449e6aa31709308c14
+      created: 1779286849670
+      modified: 1779288659521
+      isPrivate: false
+      description: ""
+      sortKey: -1779286849670
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/12.5.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/api/bancos/1
+    name: Busca Banco por ID
+    meta:
+      id: req_3a09fb6a1f5444bdb9152e56368fe61e
+      created: 1779287024370
+      modified: 1779288640106
+      isPrivate: false
+      description: ""
+      sortKey: -1779287024370
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/12.5.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/api/bancos/1
+    name: "Update Banco "
+    meta:
+      id: req_9e8db54b32be408d9906323edbb226b9
+      created: 1779288980139
+      modified: 1779299974951
+      isPrivate: false
+      description: ""
+      sortKey: -1779288980139
+    method: PUT
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "id": 1,
+          "nome": "Banco Itaú Unibanco",
+          "agencia": "1234",
+          "conta": "56789-0",
+          "tipo": "Poupança",
+          "saldo": 3200.0
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/12.5.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/api/categorias/1
+    name: Busca Categoria por ID
+    meta:
+      id: req_0e2a440e19ba4920843e717df5ca6d90
+      created: 1779300428322
+      modified: 1779300477063
+      isPrivate: false
+      description: ""
+      sortKey: -1779288002254.5
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/12.5.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/api/categorias/1
+    name: Update Categoria
+    meta:
+      id: req_badaa928ac5b40799800622295e91380
+      created: 1779300494732
+      modified: 1779301158795
+      isPrivate: false
+      description: ""
+      sortKey: -1779289424949.5
+    method: PUT
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "id": 1,
+          "descricao": "Alimentação e Delivery",
+          "tiposTransacao": "DESPESA"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/12.5.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/api/usuarios/1
+    name: Busca Usuário por ID
+    meta:
+      id: req_35eebc30cf874529a2ac62762654f6a1
+      created: 1779301030871
+      modified: 1779303420029
+      isPrivate: false
+      description: ""
+      sortKey: -1779286704768
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/12.5.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/api/usuarios/1
+    name: Update Usuário
+    meta:
+      id: req_a895213d529b482b83dc1223435b4241
+      created: 1779301074267
+      modified: 1779301175910
+      isPrivate: false
+      description: ""
+      sortKey: -1779289647354.75
+    method: PUT
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "nome": "Daniel Silva Corrigido",
+          "cpf": 12345678900,
+          "email": "daniel.novo@finseven.com"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/12.5.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/api/transacoes/1
+    name: Busca Transação ID - Despesa
+    meta:
+      id: req_efb09ec391a54b44976cdf731d89f564
+      created: 1779303080285
+      modified: 1779303410481
+      isPrivate: false
+      description: ""
+      sortKey: -1779288735667.875
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/12.5.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/api/transacoes/2
+    name: Busca Transação ID - Receita
+    meta:
+      id: req_beda9d4959ea46f18127db6834695b6e
+      created: 1779303121385
+      modified: 1779303412485
+      isPrivate: false
+      description: ""
+      sortKey: -1779288857903.4375
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/12.5.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/api/transacoes/despesas/1
+    name: Update Despesa
+    meta:
+      id: req_b8a526d89c55466ea99d221caeb2b09a
+      created: 1779303163494
+      modified: 1779303213674
+      isPrivate: false
+      description: ""
+      sortKey: -1779289758557.375
+    method: PUT
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "valor": 65.00,
+          "data": "2026-05-20",
+          "descricao": "Almoço de negócios (Preço Corrigido)",
+          "formaPagamento": "Vale Refeição"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/12.5.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/api/transacoes/receitas/2
+    name: Update Receita
+    meta:
+      id: req_19a3bbb1179c44f9a9d2ddd4a19cb3c5
+      created: 1779303268248
+      modified: 1779303408457
+      isPrivate: false
+      description: ""
+      sortKey: -1779289814158.6875
+    method: PUT
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "valor": 5500.00,
+          "data": "2026-05-20",
+          "descricao": "Salário Mensal (Com Bônus)",
+          "origem": "Empresa S/A (Matriz)"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/12.5.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/api/suporte/1
+    name: Delete Suporte
+    meta:
+      id: req_f46e96814e6f4db29879dbed94e4b3a2
+      created: 1779303466471
+      modified: 1779303577261
+      isPrivate: false
+      description: ""
+      sortKey: -1779303466471
+    method: DELETE
+    headers:
+      - name: User-Agent
+        value: insomnia/12.5.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/api/bancos/5
+    name: Delete Banco
+    meta:
+      id: req_80e3b32c7787417d81af328040deffa6
+      created: 1779303589904
+      modified: 1779303826075
+      isPrivate: false
+      description: ""
+      sortKey: -1779303589904
+    method: DELETE
+    headers:
+      - name: User-Agent
+        value: insomnia/12.5.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/api/bancos
+    name: Listar Bancos
+    meta:
+      id: req_db38149ee4724f5cafaec23b0ddac705
+      created: 1779303646664
+      modified: 1779304127740
+      isPrivate: false
+      description: ""
+      sortKey: -1779288919021.2188
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/12.5.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/api/transacoes/1
+    name: Delete Transação - Despesa
+    meta:
+      id: req_fe669116fdd64f128b2b97516b5f4748
+      created: 1779304087704
+      modified: 1779304124701
+      isPrivate: false
+      description: ""
+      sortKey: -1779303618284
+    method: DELETE
+    headers:
+      - name: User-Agent
+        value: insomnia/12.5.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/api/categorias/1
+    name: Delete Categoria
+    meta:
+      id: req_1d21495ef48b44539d9435e7da5e0bee
+      created: 1779304164043
+      modified: 1779304203063
+      isPrivate: false
+      description: ""
+      sortKey: -1779304164043
+    method: DELETE
+    headers:
+      - name: User-Agent
+        value: insomnia/12.5.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/api/categorias
+    name: Listar Categorias
+    meta:
+      id: req_bb525fbe13ee40db9e270703ab006f38
+      created: 1779304821632
+      modified: 1779304897424
+      isPrivate: false
+      description: ""
+      sortKey: -1779288949580.1094
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/12.5.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/api/investimentos
+    name: Lançamento Investimento
+    meta:
+      id: req_73b246715f1c49ce82ece3f8cf2eaf02
+      created: 1779315679190
+      modified: 1779317554036
+      isPrivate: false
+      description: ""
+      sortKey: -1779286632317
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "produto": "Tesouro IPCA+ 2035",
+          "valorAplicado": 5000.00,
+          "taxaRendimento": 6.20,
+          "dataAplicacao": "2026-05-20",
+          "usuario": { "id": 1 },
+          "banco": { "idBanco": 1 }
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/12.5.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/api/investimentos
+    name: Listar Investimentos
+    meta:
+      id: req_c90720359d9d46d887346155a8d18d45
+      created: 1779317173468
+      modified: 1779317485754
+      isPrivate: false
+      description: ""
+      sortKey: -1779288941940.3867
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/12.5.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/api/investimentos/6
+    name: Busca Investimentos por ID
+    meta:
+      id: req_2b3fd3ce4ab342ad9c1a7fad6c537d2d
+      created: 1779317202215
+      modified: 1779317512399
+      isPrivate: false
+      description: ""
+      sortKey: -1779288888462.3281
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/12.5.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/api/investimentos/5
+    name: Update Investimento
+    meta:
+      id: req_5bba67348ac247828e609be530fbe28c
+      created: 1779317239571
+      modified: 1779317545503
+      isPrivate: false
+      description: ""
+      sortKey: -1779296640314.8438
+    method: PUT
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "produto": "CDB Itaú Turbinado Super",
+          "valorAplicado": 1800.00,
+          "taxaRendimento": 13.25,
+          "dataAplicacao": "2026-05-20"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/12.5.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/api/investimentos/7
+    name: Delete Investimento
+    meta:
+      id: req_dac895baec25462d8e933bbb768feedd
+      created: 1779317564043
+      modified: 1779317584219
+      isPrivate: false
+      description: ""
+      sortKey: -1779317564043
+    method: DELETE
+    headers:
+      - name: User-Agent
+        value: insomnia/12.5.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_c612b9c9062a86782bed96ba42c8aa64ed87b5af
+    created: 1779283985979
+    modified: 1779283985979
+environments:
+  name: Base Environment
+  meta:
+    id: env_c612b9c9062a86782bed96ba42c8aa64ed87b5af
+    created: 1779283985977
+    modified: 1779283985977
+    isPrivate: false
