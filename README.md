@@ -1,47 +1,75 @@
-📋 Guia de Testes da API - Equipe FinSeven
-Para facilitar a homologação das nossas rotas e garantir que todos testem a mesma estrutura, deixei a coleção completa de endpoints salva direto no repositório.
+# FinSeven - Sistema de Controle Financeiro Pessoal 🚀
 
-📥 1. Como Importar os Testes no Insomnia
-Certifique-se de fazer o git pull para puxar a versão mais recente da branch.
+O **FinSeven** é um sistema completo de gestão de finanças pessoais desenvolvido como parte do projeto integrador da FIAP. Ele permite ao usuário realizar o controle de fluxo de caixa (Receitas, Despesas e Investimentos), gerenciar suas Contas Bancárias e customizar Categorias com persistência dinâmica no banco de dados Oracle Cloud.
 
-Na raiz do projeto, você encontrará o arquivo: Testes de Requisição Finseven_Insomnia_2026-05-20.yaml.
+---
 
-Abra o seu Insomnia.
+## 🛠️ Tecnologias Utilizadas
 
-No canto superior esquerdo, clique no seu Workspace atual (ou em Preferences) e selecione Import/Export.
+### Frontend:
+* **Framework**: Next.js 15 (React 19)
+* **Estilização**: Vanilla CSS & TailwindCSS (para transições dinâmicas e layouts responsivos)
+* **Ferramenta de Build**: Turbopack (`next dev`)
 
-Clique em Import Data -> From File e selecione o arquivo .yaml que está na raiz do projeto.
+### Backend:
+* **Framework**: Spring Boot (Java 17)
+* **Persistência**: Spring Data JPA (Hibernate)
+* **Banco de Dados**: Oracle Cloud Database (com configuração de Sequences)
 
-Pronto! Uma pasta organizada com todas as nossas requisições HTTP (POST, GET, PUT, DELETE) aparecerá no seu painel.
+---
 
-🚀 2. Roteiro de Execução dos Testes (Ordem Obrigatória)
-Como o nosso banco Oracle exige integridade de chaves estrangeiras, não tente criar uma transação ou investimento antes de criar a base. Siga rigorosamente esta ordem para evitar erros 500 ou chaves não encontradas:
+## ⚙️ Instruções de Inicialização
 
-Passo 1: Criar o Usuário (POST)
-Rode primeiro o POST de Usuários.
+Certifique-se de ter o **Node.js (v18+)** e o **Java JDK 17+** instalados na sua máquina.
 
-Ele vai gerar um ID no banco (Ex: id: 1).
+### 1. Inicializando o Backend (Spring Boot)
 
-Passo 2: Criar a Conta Bancária (POST)
-Rode o POST de Bancos para cadastrar a conta (Ex: Itaú).
+1. Abra um terminal na pasta do backend `Fase_7Integration_finseven/Fintech-FinSeven`.
+2. Certifique-se de que as configurações de conexão com o banco de dados Oracle estão corretas no arquivo `src/main/resources/application.properties` (caso utilize um banco local ou cloud específico).
+3. Execute o comando Maven Wrapper para compilar e iniciar o servidor Spring Boot:
 
-Ele vai gerar o ID do banco (Ex: idBanco: 1).
+   **No Windows (PowerShell/CMD):**
+   ```bash
+   .\mvnw spring-boot:run
+   ```
 
-Passo 3: Criar Investimentos e Transações (POST)
-Agora você já pode rodar os testes de POST de Investimentos e de Transações (Receitas/Despesas).
+   **No Linux/macOS:**
+   ```bash
+   chmod +x mvnw
+   ./mvnw spring-boot:run
+   ```
+4. O servidor do backend estará rodando no endereço: `http://localhost:8080`
 
-Fique atento: No corpo do JSON dessas requisições, certifique-se de que os campos de relacionamento estão apontando para os IDs reais que você gerou nos Passos 1 e 2.
+---
 
-JSON:
+### 2. Inicializando o Frontend (Next.js)
 
-{
-"usuario": { "id": 1 },
-"banco": { "idBanco": 1 }
-}
+1. Abra um terminal na pasta do frontend `front-end_fintech_finseven`.
+2. Instale as dependências de pacotes do Node.js:
+   ```bash
+   npm install
+   ```
+3. Inicie o servidor de desenvolvimento do Next.js:
+   ```bash
+   npm run dev
+   ```
+4. O frontend estará disponível e rodando no endereço: `http://localhost:3000`
 
-⚠️ Atenção aos IDs na URL (Evitando o Erro 404)
-Como estamos usando Sequences do Oracle (SQ_FINSEVEN_...), os IDs dos registros não vão começar necessariamente em 1, 2, 3... Eles seguem a numeração atual da sequence do banco.
+---
 
-Sempre rode o GET Geral primeiro (ex: GET /api/investimentos) para ver quais IDs o banco gerou (pode ser 5, 6, 7...).
+## 🔑 Dados de Autenticação para Testes (Login)
 
-Use o ID real que retornou no banco para testar as rotas de GET por ID, PUT (Atualizar) e DELETE (Excluir) na URL (ex: /api/investimentos/5).
+Para fins de avaliação rápida e testes acadêmicos, definimos as seguintes credenciais padrão (Admin bypass):
+
+* **E-mail**: `admin@finseven.com`
+* **Senha**: `admin123`
+
+> 💡 **Nota**: O usuário também pode usar a guia **"Cadastrar"** na própria tela de autenticação para registrar novas contas. O sistema enviará os dados para o endpoint `POST /api/usuarios`, salvando-os de forma 100% dinâmica no banco de dados Oracle, permitindo realizar o login com as credenciais recém-criadas.
+
+---
+
+## 💎 Funcionalidades Integradas de CRUD
+
+* **Contas Bancárias (`/conta-bancaria`)**: Cadastrar, Listar e Deletar contas de bancos diretamente na base Oracle.
+* **Transações (`/transacao`, `/receitas`, `/despesas`, `/investimentos`)**: Lançar transações e visualizar históricos detalhados integrados dinamicamente com filtros por datas e categorias.
+* **Categorias Customizadas (`/categorias`)**: Cadastro e exclusão de categorias dinâmicas que se integram instantaneamente em todas as listas de seleção de transações da plataforma.
