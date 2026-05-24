@@ -26,6 +26,16 @@ public class LoginService {
         return loginRepository.findAll();
     }
 
+    public Login searchByEmail(String email) {
+        return loginRepository.findByUsuarioEmail(email)
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado com o e-mail: " + email));
+    }
+
+    public Login autenticar(String email, String senha) {
+        return loginRepository.findByUsuarioEmailAndSenha(email, senha)
+                .orElseThrow(() -> new RuntimeException("E-mail ou senha inválidos."));
+    }
+
     public Optional<Login> searchById(Integer id) {
 
         return loginRepository.findById(id);

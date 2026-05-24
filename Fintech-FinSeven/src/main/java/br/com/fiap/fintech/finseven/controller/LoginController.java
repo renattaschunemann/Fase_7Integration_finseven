@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.Map;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -21,6 +22,28 @@ public class LoginController {
     public ResponseEntity<Login> insert(@RequestBody Login login) {
         Login novoLogin = loginService.insert(login); // Corrigido para chamar .salvar()
         return ResponseEntity.status(HttpStatus.CREATED).body(novoLogin);
+    }
+
+    @GetMapping("/email/{email}")
+    public ResponseEntity<Login> searchByEmail(@PathVariable String email) {
+        try {
+            Login login = loginService.searchByEmail(email);
+            return ResponseEntity.ok(login);
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<Login> login(@RequestBody Map<String, String> credentials) {
+        String email = credentials.get("email");
+        String senha = credentials.get("senha");
+        try {
+            Login login = loginService.autenticar(email, senha);
+            return ResponseEntity.ok(login);
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
     }
 
     @GetMapping
